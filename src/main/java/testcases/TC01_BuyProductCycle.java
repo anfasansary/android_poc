@@ -30,7 +30,10 @@ public class TC01_BuyProductCycle extends MobilePOCWrappers{
 		.enterUserName(email)
 		.clickContinueButton()
 		.enterPassword(Password)
-		.clickLogin();
+		.clickLogin()
+		.clickSearch()
+		.enterSearchKeyword(productTitle)
+		.clickSearchEnterButton();
 		//.clickLogout();
 	}
 

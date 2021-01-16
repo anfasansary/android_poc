@@ -1,5 +1,9 @@
 package mobilePOC;
 
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+
 import com.relevantcodes.extentreports.ExtentTest;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -13,9 +17,36 @@ public class SearchResultsPage extends MobilePOCWrappers{
 		this.test = test;
 	}
 	
-	public SearchResultsPage findProductAndClick(String productTitle) {
+	public ProductDetailPage findProductAndClick(String productTitle) {
+		boolean status=false;
 		
+		do {
+			List<WebElement> productList = webelementList(prop.getProperty("SearchResultPage.ProductList.Xpath"));
+			
+			for(int i=1; i<=productList.size(); i++) {
+				String productTitleXpath = stringReplacerMethod(prop.getProperty("SearchResultPage.ProductTitle.Xpath"), String.valueOf(i));
+				
+				if(assertTextByXpath(productTitleXpath, productTitle)) {
+					status=true;
+					
+					String productClickXpath = stringReplacerMethod(prop.getProperty("SearchResultPage.ProductClick.Xpath"), String.valueOf(i));
+					clickByXpath(productClickXpath);
+					break;
+				}
+				else {
+					continue;
+				}
+				
+			}
+			
+			if(!status) {
+				
+			}
+			
+			
+		}
+		while(status);
 		
-		return this;
+		return new ProductDetailPage(driver, test);
 	}
 }

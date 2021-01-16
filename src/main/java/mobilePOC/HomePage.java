@@ -24,6 +24,7 @@ public class HomePage extends MobilePOCWrappers{
 	}
 	
 	public SearchResultsPage clickSearchEnterButton() {
+		pressEnter();
 		return new SearchResultsPage(driver, test);
 	}
 }

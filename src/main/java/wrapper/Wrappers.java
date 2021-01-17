@@ -27,8 +27,6 @@ public interface Wrappers {
 
 	boolean clickByXpath(String xpath);
 
-	boolean verifyContentDescIsDisplayed(String xpath);
-
 	boolean clickByLinkText(String LinkText);
 
 	void enterTextByID(String id, String data);
@@ -41,15 +39,11 @@ public interface Wrappers {
 
 	boolean verifyTextByID(String id, String data);
 
-	boolean scrollDownInBrowser(int val);
-
 	boolean backButton();
 
 	boolean scrollUsingDesc(String text);
 
 	boolean scrollUpinApp();
-
-	boolean scrollHalfinApp();
 
 	boolean zoomInApp();
 

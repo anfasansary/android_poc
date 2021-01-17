@@ -191,6 +191,26 @@ public class WrapperMethods extends Reporter implements Wrappers {
 		}
 		return true;
 	}
+	
+	/*
+	 * Switch to Web View
+	 */
+	public boolean switchWebview() {
+		try {
+			Set<String> contextNames = driver.getContextHandles();
+
+			for (String contextName : contextNames) {
+
+				if (contextName.contains("WEBVIEW"))
+					driver.context(contextName);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			reportStep("The Webview couldnot be found", "FAIL");
+		}
+		return true;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -249,27 +269,7 @@ public class WrapperMethods extends Reporter implements Wrappers {
 		}
 		return true;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see wrapper.Wrappers#verifyContentDescIsDisplayed(java.lang.String)
-	 */
-	public boolean verifyContentDescIsDisplayed(String xpath) {
-		boolean bReturn = false;
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
-		if (driver.findElementByXPath(xpath).isDisplayed()) {
-			bReturn = true;
-			reportStep("The element with Xpath: " + xpath + " is displayed.", "PASS");
-		} else {
-			reportStep("The element with Xpath: " + xpath + " is not displayed.", "FAIL");
-			bReturn = false;
-		}
-		return bReturn;
-
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -506,28 +506,6 @@ public class WrapperMethods extends Reporter implements Wrappers {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see wrapper.Wrappers#scrollHalfinApp()
-	 */
-	public boolean scrollHalfinApp() {
-		try {
-			Dimension size = driver.manage().window().getSize();
-			int x0 = (int) (size.getWidth() * 0.2);
-			int y0 = (int) (size.getHeight() * 0.2);
-			int x1 = (int) (size.getWidth() * 0.5);
-			int y1 = (int) (size.getHeight() * 0.5);
-			TouchAction touch = new TouchAction(driver);
-			touch.press(x1, y1).waitAction(2000).moveTo(x0, y0).release().perform();
-			reportStep("Application screen is scrolled successfully", "PASS");
-		} catch (Exception e) {
-			reportStep("Application screen could not be scrolled", "FAIL");
-			e.printStackTrace();
-		}
-		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see wrapper.Wrappers#zoomInApp()
 	 */
 	public boolean zoomInApp() {
@@ -607,22 +585,8 @@ public class WrapperMethods extends Reporter implements Wrappers {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see wrapper.Wrappers#scrollDownInBrowser(int)
+	 * Enter text using action class
 	 */
-	public boolean scrollDownInBrowser(int val) {
-		try {
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("window.scrollBy(0," + val + "\")", "");
-		} catch (Exception e) {
-			// e.printStackTrace();
-		}
-		return true;
-	}
-
-//Updated on 31 Jan 2017
-
 	public void enterTextByXpathUsingActions(String xpath, String data) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -661,6 +625,9 @@ public class WrapperMethods extends Reporter implements Wrappers {
 		return true;
 	}
 
+	/*
+	 * Screen Orientation
+	 */
 	public boolean screenOrientation() {
 		try {
 
@@ -734,23 +701,6 @@ public class WrapperMethods extends Reporter implements Wrappers {
 		return true;
 	}
 
-	public boolean switchWebview() {
-		try {
-			Set<String> contextNames = driver.getContextHandles();
-
-			for (String contextName : contextNames) {
-
-				if (contextName.contains("WEBVIEW"))
-					driver.context(contextName);
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			reportStep("The Webview couldnot be found", "FAIL");
-		}
-		return true;
-	}
-
 	/*
 	 * Method for click an element using xpath and action class
 	 */
@@ -782,11 +732,26 @@ public class WrapperMethods extends Reporter implements Wrappers {
 	}
 	
 	/*
-	 * Method for taking list of webelements
+	 * Method for taking list of web elements
 	 */
 	public List<WebElement> webelementList(String element) {
 		List<WebElement> elements = (List<WebElement>) driver.findElementsByXPath(element);
 		return elements;
 	}
 	
+	public void horizontalSwipe(double A1, double A2) {
+		Dimension size = driver.manage().window().getSize();
+		int startX = (int)(size.width*A1);
+		int endX = (int)(size.width*A2);
+		int Y = size.height/2;
+		driver.swipe(startX, Y, endX, Y, 2000);
+	}
+	
+	public void verticalSwipe(double A1, double A2) {
+		Dimension size = driver.manage().window().getSize();
+		int startY = (int)(size.height*A1);
+		int endY = (int)(size.height*A2);
+		int X = size.width/2;
+		driver.swipe(X, startY, X, endY, 2000);
+	}	
 }

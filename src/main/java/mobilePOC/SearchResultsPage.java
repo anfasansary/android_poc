@@ -39,11 +39,9 @@ public class SearchResultsPage extends MobilePOCWrappers{
 				
 			}
 			
-			if(!status) {
-				
+			if(!status && productList.size()>5) {
+				verticalSwipe(0.80, 0.20);
 			}
-			
-			
 		}
 		while(status);
 		

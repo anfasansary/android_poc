@@ -39,7 +39,10 @@ public class TC01_BuyProductCycle extends MobilePOCWrappers{
 		.findProductAndClick(productTitle)
 		.verifyProductTitle(productTitle)
 		.addToCat()
-		.clickCartIcon();
+		.clickCartIcon()
+		.verifyCartCount("1")
+		.verifyCartProductTitle(productTitle)
+		.clickProceedToCheckOut();
 		//.clickLogout();
 	}
 

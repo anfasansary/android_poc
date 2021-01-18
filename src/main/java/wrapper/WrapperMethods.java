@@ -415,6 +415,29 @@ public class WrapperMethods extends Reporter implements Wrappers {
 		}
 		return bReturn;
 	}
+	
+	/*
+	 * Assert Test using Id
+	 */
+	public boolean assertTextById(String id, String data) {
+		boolean bReturn = false;
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(id)));
+			String name = driver.findElementByXPath(id).getText();
+			if (name.equalsIgnoreCase(data)) {
+				bReturn = true;
+				reportStep("The text: " + name + " matches with the value :" + data, "PASS");
+			} else {
+				bReturn = false;
+				reportStep("The text: " + name + " did not match with the value :" + data, "FAIL");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			reportStep("Unknown exception occured while verifying the title", "FAIL");
+		}
+		return bReturn;
+	}
 
 	/*
 	 * Assert Test using Xpath

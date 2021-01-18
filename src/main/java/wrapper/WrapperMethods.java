@@ -778,4 +778,18 @@ public class WrapperMethods extends Reporter implements Wrappers {
 		int X = size.width/2;
 		driver.swipe(X, startY, X, endY, 2000);
 	}	
+	
+	public boolean elementPresentOrNot(String locator, String locatorType) {
+		boolean result = false;
+		
+		if(locatorType.equalsIgnoreCase("Id")) {
+			WebElement element = driver.findElementById(locator);
+			result = element.isDisplayed();
+		}
+		else if(locatorType.equalsIgnoreCase("Xpath")) {
+			WebElement element = driver.findElementByXPath(locator);
+			result = element.isDisplayed();
+		}
+		return result;
+	}
 }

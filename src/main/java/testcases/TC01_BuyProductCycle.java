@@ -38,7 +38,7 @@ public class TC01_BuyProductCycle extends MobilePOCWrappers{
 		.clickSearchEnterButton()
 		.findProductAndClick(productTitle)
 		.verifyProductTitle(productTitle)
-		.addToCat()
+		.addToCart()
 		.clickCartIcon()
 		.verifyCartCount("1")
 		.verifyCartProductTitle(productTitle)

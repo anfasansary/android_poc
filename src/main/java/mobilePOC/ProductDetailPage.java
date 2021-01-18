@@ -22,7 +22,11 @@ public class ProductDetailPage extends MobilePOCWrappers{
 		return this;
 	}
 	
-	public ProductDetailPage addToCat() {
+	public ProductDetailPage addToCart() {
+		do {
+			verticalSwipe(0.70, 0.30);
+		}
+		while(elementPresentOrNot(prop.getProperty("ProductDetailPage.AddToCart.Xpath"), "Xpath"));
 		clickByXpath(prop.getProperty("ProductDetailPage.AddToCart.Xpath"));
 		return this;
 	}

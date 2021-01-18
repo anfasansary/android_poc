@@ -7,7 +7,7 @@ public interface Wrappers {
 
 	void loadObjects() throws FileNotFoundException, IOException;
 	
-	public void unloadObjects();
+	void unloadObjects();
 
 	boolean launchApp(String deviceName, String version);
 
@@ -66,7 +66,12 @@ public interface Wrappers {
 	boolean setWIFINetworkConnection();
 	
 	boolean switchWebview();
-
-
-
+	
+	void clickXpathUsingActions(String xpath);
+	
+	void horizontalSwipe(double A1, double A2);
+	
+	void verticalSwipe(double A1, double A2);
+	
+	boolean elementPresentOrNot(String locator, String locatorType);
 }

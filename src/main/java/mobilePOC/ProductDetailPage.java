@@ -17,7 +17,18 @@ public class ProductDetailPage extends MobilePOCWrappers{
 		this.test = test;
 	}
 	
-//	public ProductDetailPage findProductAndClick(String productTitle) {
-//		
-//	}
+	public ProductDetailPage verifyProductTitle(String productTitle) {
+		assertTextByXpath(prop.getProperty("ProductDetailPage.ProductTitle.Xpath"), productTitle);
+		return this;
+	}
+	
+	public ProductDetailPage addToCat() {
+		clickByXpath(prop.getProperty("ProductDetailPage.AddToCart.Xpath"));
+		return this;
+	}
+	
+	public CartPage clickCartIcon() {
+		clickByID("ProductDetailPage.CartIcon.Id");
+		return new CartPage(driver, test);
+	}
 }

@@ -21,7 +21,7 @@ public class TC01_BuyProductCycle extends MobilePOCWrappers{
 	}
 
 	@Test(dataProvider="fetchData")
-	public void verifyBuyProductCycle(String deviceName,String version, String email,String Password, String productTitle, String productGroup) throws IOException {
+	public void verifyBuyProductCycle(String deviceName,String version, String email,String Password, String searchKeyword, String productTitle, String productGroup, String productDetails) throws IOException {
 		new LoginPage(driver, test).
 		
 		installEbayApp()
@@ -34,8 +34,12 @@ public class TC01_BuyProductCycle extends MobilePOCWrappers{
 		.clickLogin()
 		.switchToNativeView()
 		.clickSearch()
-		.enterSearchKeyword(productTitle)
-		.clickSearchEnterButton();
+		.enterSearchKeyword(searchKeyword)
+		.clickSearchEnterButton()
+		.findProductAndClick(productTitle)
+		.verifyProductTitle(productTitle)
+		.addToCat()
+		.clickCartIcon();
 		//.clickLogout();
 	}
 

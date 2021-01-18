@@ -27,10 +27,12 @@ public class TC01_BuyProductCycle extends MobilePOCWrappers{
 		installEbayApp()
 		.launchEbayApp(deviceName, version)
 		.alreadyCustomerButtonClick()
+		.switchToWebView()
 		.enterUserName(email)
 		.clickContinueButton()
 		.enterPassword(Password)
 		.clickLogin()
+		.switchToNativeView()
 		.clickSearch()
 		.enterSearchKeyword(productTitle)
 		.clickSearchEnterButton();

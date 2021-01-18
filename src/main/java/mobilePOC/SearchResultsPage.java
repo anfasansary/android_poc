@@ -20,6 +20,7 @@ public class SearchResultsPage extends MobilePOCWrappers{
 	public ProductDetailPage findProductAndClick(String productTitle) {
 		boolean status=false;
 		
+		List<WebElement> productListInitialSize = webelementList(prop.getProperty("SearchResultPage.ProductList.Xpath"));
 		do {
 			List<WebElement> productList = webelementList(prop.getProperty("SearchResultPage.ProductList.Xpath"));
 			
@@ -39,7 +40,7 @@ public class SearchResultsPage extends MobilePOCWrappers{
 				
 			}
 			
-			if(!status && productList.size()>5) {
+			if(!status && (productList.size()>=productListInitialSize.size())) {
 				verticalSwipe(0.80, 0.20);
 			}
 		}

@@ -12,6 +12,16 @@ public class HomePage extends MobilePOCWrappers{
 		this.driver = driver;
 		this.test = test;
 	}
+	
+	public HomePage switchToWebView() {
+		switchWebview();
+		return this;
+	}
+	
+	public HomePage switchToNativeView() {
+		switchview();
+		return this;
+	}
 
 	public HomePage clickSearch() {
 		clickByID(prop.getProperty("HomePage.Search.Id"));		

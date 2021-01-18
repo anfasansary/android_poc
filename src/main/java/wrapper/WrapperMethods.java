@@ -91,6 +91,7 @@ public class WrapperMethods extends Reporter implements Wrappers {
 			dc.setCapability("deviceName", deviceName);
 			dc.setCapability("mobile", deviceName);
 			dc.setVersion(version);
+			dc.setCapability("noReset", "False");
 			dc.setCapability("nativeWebScreenshot", "true");
 			driver = new AndroidDriver<WebElement>(new URL("http://" + hub + ":" + port + "/wd/hub"), dc);
 			reportStep("The Appication package:" + appPackage + " launched successfully", "PASS");

@@ -23,28 +23,39 @@ public class LoginPage extends MobilePOCWrappers{
 		return this;
 	}
 	
+	public LoginPage switchToWebView() {
+		switchWebview();
+		return this;
+	}
+	
+	public LoginPage switchToNativeView() {
+		switchview();
+		return this;
+	}
+	
 	public LoginPage alreadyCustomerButtonClick(){
+		switchview();
 		clickByID(prop.getProperty("LoginPage.AlreadyCustomer.Id"));
 		return this;
 	}
 
 	public LoginPage enterUserName(String email){
-		enterTextByID(prop.getProperty("LoginPage.Email.Id"),email);
+		enterTextByXpath(prop.getProperty("LoginPage.Email.Xpath"),email);
 		return this;
 	}
 	
 	public LoginPage clickContinueButton(){
-		clickByID(prop.getProperty("LoginPage.Continue.Id"));
+		clickByXpath(prop.getProperty("LoginPage.Continue.Xpath"));
 		return this;
 	}
 
 	public LoginPage enterPassword(String password){
-		enterTextByID(prop.getProperty("LoginPage.Password.Id"), password);
+		enterTextByXpath(prop.getProperty("LoginPage.Password.Xpath"), password);
 		return this;
 	}
 
 	public HomePage clickLogin(){
-		clickByID(prop.getProperty("LoginPage.Signin.Id"));
+		clickByXpath(prop.getProperty("LoginPage.Signin.Xpath"));
 		return new HomePage(driver, test);
 	}
 }
